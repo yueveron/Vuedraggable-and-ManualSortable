@@ -1,5 +1,10 @@
 # my-demo
 
+## Drag 改变 List-Item 位置
+#### 1.SimpleDraggable.vue - 使用 vuedraggable 组件
+#### 2.ManualSortable.vue - 手动编写 playbuzz sortable 效果
+
+
 ## Project setup
 ```
 npm install
