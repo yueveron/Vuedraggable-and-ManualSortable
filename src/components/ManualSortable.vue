@@ -4,7 +4,12 @@
 		<div class="draggable-wrapper">
 			<div class="list-group dragula-container">
 				<div class="list-group-item" v-for="element in list" :key="element.id">
-					<div class="text-wrapper">{{element.name}}</div>
+					<div class="text-wrapper">
+            <!-- <p>{{element.name}}</p> -->
+            <div>
+              <VueEditor v-model="element.name" placeholder="请输入内容" :editorToolbar="customToolbar"></VueEditor>
+            </div>
+          </div>
           <div class="btn-wrapper">
             <button class="btn-delete" @click="clickRemoveItem">Delete</button>
             <button class="btn-move handle" @mousedown="onMouseDown">Move</button>
@@ -28,10 +33,14 @@
 import draggable from "vuedraggable";
 import util from '@/utils/util';
 import sortable from '@/utils/sortable';
+import { VueEditor } from "vue2-editor";
+
 
 export default {
   name: 'ManualSortable',
-  components: {},
+  components: {
+    VueEditor
+  },
   computed: {
     realList() {
       return this.list;
@@ -46,11 +55,16 @@ export default {
   			{ name: "Veron", id: 0 },
         { name: "Kate", id: 1 },
         { name: "Jean", id: 2},
-        { name: "Arror", id: 3 },
-        { name: "Beeek", id: 4 },
-        { name: "CCCC", id: 5},
-        { name: "DDDD", id: 6}
-  		]
+        // { name: "Arror", id: 3 },
+        // { name: "Beeek", id: 4 },
+        // { name: "CCCC", id: 5},
+        // { name: "DDDD", id: 6}
+  		],
+      customToolbar :[
+        ['bold', 'italic', 'underline'],
+        [{ 'color': [] }], 
+        ['clean']
+      ]
   	}
   },
   mounted(){
@@ -131,7 +145,7 @@ export default {
   .list-group-item{
     margin:20px 0px;
     .text-wrapper{
-      height : 100px;
+      min-height : 100px;
     }
     .btn-wrapper{
       position:absolute;
